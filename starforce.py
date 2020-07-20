@@ -1,13 +1,15 @@
 import time, random
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+import matplotlib.path as path
 import matplotlib.animation as animation
 
 # global variables
 __INITSTAR__ = 17
-__GOAL__ = 22
+__GOAL__ = 25
 __EQUIPMENTLEVEL__ = 150
-__SIMULATIONS__ = 100000
+__SIMULATIONS__ = 10 ** 4
 
 success_arr = [0.95, 0.90, 0.85, 0.85, 0.8, 0.75, 0.70, 0.65, 0.60, 0.55, 0.50, 0.45, 0.40, 0.35, 0.30, 0.30, 0.30, 0.30, 0.30, 0.30, 0.30, 0.30, 0.03, 0.02, 0.01]
 destroy_arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.01, 0.02, 0.03, 0.03, 0.03, 0.03, 0.04, 0.04, 0.10, 0.10, 0.20, 0.30, 0.40]
@@ -16,7 +18,7 @@ star = __INITSTAR__
 goal = __GOAL__
 destroyed = False
 failstack = 0
-safeguard = False
+safeguard = True
 starcatch = True
 _5_10_15 = False
 boom = 0
@@ -62,7 +64,7 @@ for i in range(__SIMULATIONS__):
                         failstack += 1
         # print(star)
     results[star] += 1
-    star = 12
+    star = __INITSTAR__
     destroyed = False
 for i in range(12,26):
     print(i, results[i])
@@ -71,4 +73,10 @@ print("simulations:", __SIMULATIONS__)
 end_time = time.time()
 print("time elapsed:", end_time - start_time)
 
+# print(results.keys())
+# print(results.values())
+# data = np.array(list(results.items()))
+# n, bins = np.histogram(data, 100)
+# plt.bar(results.keys(), results.values())
+# plt.show()
     # print(star, destroyed)
